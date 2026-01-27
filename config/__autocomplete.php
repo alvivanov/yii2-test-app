@@ -1,5 +1,7 @@
 <?php
 
+use diecoding\flysystem\AbstractComponent;
+
 /**
  * This class only exists here for IDE (PHPStorm/Netbeans/...) autocompletion.
  * This file is never included anywhere.
@@ -22,6 +24,7 @@ class Yii
 /**
  * @property yii\rbac\DbManager $authManager
  * @property \yii\web\User|__WebUser $user
+ * @property AbstractComponent $fs
  */
 class __Application
 {

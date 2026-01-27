@@ -1,15 +1,20 @@
 <?php
 
+define('DOTENV_PATH', './..');
+define('DOTENV_FILE', '.env.test');
+define('DOTENV_OVERLOAD', false);
+
 // NOTE: Make sure this file is not accessible when deployed to production
-if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
-    die('You are not allowed to access this file.');
-}
+//if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
+//    die('You are not allowed to access this file.');
+//}
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'test');
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
+Yii::$classMap = array_merge(Yii::$classMap, require __DIR__ . '/../config/autoload.php');
 
 $c3 = dirname(__DIR__) . '/c3.php';
 

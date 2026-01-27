@@ -2,103 +2,103 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+use yii\behaviors\AttributeTypecastBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\web\IdentityInterface;
+
+/**
+ * @property int    id
+ * @property string username
+ * @property string password
+ * @property string created_at
+ * @property string updated_at
+ */
+final class User extends ActiveRecord implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $_users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public static function findIdentity($id)
+    public function behaviors(): array
     {
-        return isset(self::$_users[$id]) ? new static(self::$_users[$id]) : null;
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => AttributeTypecastBehavior::class,
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('NOW()'),
+            ],
+        ]);
+    }
+
+    public function rules(): array
+    {
+        return array_merge(parent::rules(), [
+            [['username', 'password'], 'required'],
+            [['username', 'password'], 'string', 'length' => [6, 255]],
+            [['created_at', 'updated_at'], 'date'],
+        ]);
+    }
+
+    public static function findByUsername(string $username): ?self
+    {
+        return self::findOne(['username' => $username]);
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentity($id): ?self
     {
-        foreach (self::$_users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
+        return self::findOne($id);
+    }
 
+    /**
+     * @inheritDoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null): null
+    {
         return null;
     }
 
     /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
+     * @inheritDoc
      */
-    public static function findByUsername($username)
+    public function attributeLabels(): array
     {
-        foreach (self::$_users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return array_merge(parent::attributeLabels(), [
+            'id'         => Yii::t('app/user', 'ID'),
+            'username'   => Yii::t('app/user', 'Username'),
+            'password'   => Yii::t('app/user', 'Password'),
+            'created_at' => Yii::t('app/user', 'Created At'),
+            'updated_at' => Yii::t('app/user', 'Updated At'),
+        ]);
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function getAuthKey()
+    public function getAuthKey(): null
     {
-        return $this->authKey;
+        return null;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): null
     {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+        return null;
     }
 }
