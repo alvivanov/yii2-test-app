@@ -23,18 +23,24 @@
         "borales/yii2-phone-input": "^0.3.0",
         "kartik-v/yii2-widget-select2": "^2.2",
         "guzzlehttp/guzzle": "^7.10",
-        "diecoding/yii2-flysystem": "^1.7"
+        "diecoding/yii2-flysystem": "^1.7",
+        "diecoding/yii2-dropify": "^1.1",
+        "yiisoft/yii2-queue": "^2.3.8",
+        "yiisoft/yii2-redis": "^2.1",
+        "yii2-extended/yii2-psr3-logger-bridge": "^9.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.2.0",
         "yiisoft/yii2-faker": "~2.0.0",
-        "codeception/codeception": "^5.0.0 || ^4.0",
-        "codeception/lib-innerbrowser": "^4.0 || ^3.0 || ^1.1",
-        "codeception/module-asserts": "^3.0 || ^1.1",
+        "codeception/codeception": "^5.0.0",
+        "codeception/lib-innerbrowser": "^4.0",
+        "codeception/module-asserts": "^3.0",
         "codeception/module-yii2": "^1.1",
-        "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
-        "codeception/verify": "^3.0 || ^2.2"
+        "codeception/module-filesystem": "^3.0",
+        "codeception/verify": "^3.0 || ^2.2",
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.1"
     },
     "config": {
         "allow-plugins": {
@@ -47,6 +53,8 @@
     },
     "scripts": {
         "test": "php ./tests/yii migrate/up --interactive=0 && ./vendor/bin/codecept build &&./vendor/bin/codecept run",
+        "cs-fixer-check": "./vendor/bin/php-cs-fixer check",
+        "cs-fixer-fix": "./vendor/bin/php-cs-fixer fix",
         "post-install-cmd": [
             "yii\\composer\\Installer::postInstall"
         ],

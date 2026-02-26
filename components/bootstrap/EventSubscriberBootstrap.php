@@ -17,7 +17,7 @@ final readonly class EventSubscriberBootstrap implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        foreach (require Yii::getAlias('@app/config/events.php') as $eventSenderClass => $eventHandlerMap) {
+        foreach (require Yii::getAlias('@app/config/parts/events.php') as $eventSenderClass => $eventHandlerMap) {
             foreach ($eventHandlerMap as $event => $handlerClasses) {
                 foreach ($handlerClasses as $handlerClass) {
                     if (!is_a($handlerClass, EventHandlerInterface::class, true)) {

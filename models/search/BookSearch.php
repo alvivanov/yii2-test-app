@@ -51,8 +51,8 @@ final class BookSearch extends Book
                     ],
                     ...ArrayHelper::map(
                         ['id', 'title', 'publication_year', 'updated_at'],
-                        static fn(string $attribute): string => $attribute,
-                        static fn(string $attribute): array => [
+                        static fn (string $attribute): string => $attribute,
+                        static fn (string $attribute): array => [
                             'asc'  => [$attribute => SORT_ASC, 'id' => SORT_ASC],
                             'desc' => [$attribute => SORT_DESC, 'id' => SORT_DESC],
                         ],

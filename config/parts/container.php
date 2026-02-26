@@ -6,8 +6,10 @@ use app\components\smspilot_api_client\SmspilotApiClient;
 use app\components\smspilot_api_client\SmspilotApiClientInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use Psr\Log\LoggerInterface;
 use tuyakhov\notifications\Notifier;
 use yii\web\User;
+use Yii2Extended\Yii2Log\Psr3ToYii2Logger;
 
 return [
     'definitions' => [
@@ -18,12 +20,9 @@ return [
         ],
     ],
     'singletons'  => [
-        User::class     => Instance::of(User::class),
-        Notifier::class => [
-            'class'    => Notifier::class,
-            'channels' => [
-                'sms' => SmspilotChannel::class,
-            ],
-        ],
+        LoggerInterface::class  => Psr3ToYii2Logger::class,
+//        Psr3ToYii2Logger::class => Psr3ToYii2Logger::class,
+        User::class             => Instance::of(User::class),
+        Notifier::class         => ['class' => Notifier::class, 'channels' => ['sms' => SmspilotChannel::class]],
     ],
 ];

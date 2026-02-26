@@ -6,7 +6,6 @@ use Yii;
 use yii\behaviors\AttributeTypecastBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 /**
@@ -24,13 +23,8 @@ final class User extends ActiveRecord implements IdentityInterface
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-            [
-                'class' => AttributeTypecastBehavior::class,
-            ],
-            [
-                'class' => TimestampBehavior::class,
-                'value' => new Expression('NOW()'),
-            ],
+            AttributeTypecastBehavior::class,
+            ['class' => TimestampBehavior::class, 'value' => date('Y-m-d H:i:s')],
         ]);
     }
 

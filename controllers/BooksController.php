@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\book_service\BookService;
 use app\components\exceptions\ModelNotFoundException;
 use app\models\forms\BookForm;
+use app\models\search\AuthorSearch;
 use app\models\search\BookSearch;
 use yii\base\Module;
 use yii\filters\AccessControl;
@@ -12,6 +13,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
+use yii\web\User;
 
 final class BooksController extends Controller
 {
@@ -55,7 +57,10 @@ final class BooksController extends Controller
      */
     public function actionView(int $id): string
     {
-        return $this->render('view', ['model' => $this->bookService->get($id)]);
+        return $this->render('view', [
+            'model'           => $this->bookService->get($id),
+            'authorsDropdown' => new AuthorSearch()->searchForDropdown(),
+        ]);
     }
 
     /**
@@ -71,7 +76,7 @@ final class BooksController extends Controller
             return $this->redirect('/books');
         }
 
-        return $this->render('update', ['model' => $form]);
+        return $this->render('update', ['model' => $form, 'authorsDropdown' => new AuthorSearch()->searchForDropdown()]);
     }
 
     public function actionCreate(Request $request): Response|string
@@ -84,7 +89,7 @@ final class BooksController extends Controller
             return $this->redirect('/books');
         }
 
-        return $this->render('create', ['model' => $form]);
+        return $this->render('create', ['model' => $form, 'authorsDropdown' => new AuthorSearch()->searchForDropdown()]);
     }
 
     /**
@@ -97,13 +102,18 @@ final class BooksController extends Controller
         return $this->redirect('/books');
     }
 
-    public function actionIndex(Request $request): string
+    public function actionIndex(Request $request, User $userService): string
     {
         $searchModel = new BookSearch();
 
         return $this->render('index', [
-            'dataProvider' => $searchModel->search($request->queryParams),
-            'searchModel'  => $searchModel,
+            'dataProvider'     => $searchModel->search($request->queryParams),
+            'searchModel'      => $searchModel,
+            'availableButtons' => [
+                'view'   => true,
+                'update' => !$userService->isGuest,
+                'delete' => !$userService->isGuest,
+            ],
         ]);
     }
 }

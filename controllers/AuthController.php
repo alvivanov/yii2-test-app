@@ -14,12 +14,10 @@ use yii\web\User as UserService;
 
 final class AuthController extends Controller
 {
-    public function __construct(string $id, Module $module, private readonly UserService $userService,  array $config = [])
+    public function __construct(string $id, Module $module, private readonly UserService $userService, array $config = [])
     {
         parent::__construct($id, $module, $config);
     }
-
-
 
     /**
      * @inheritDoc

@@ -11,9 +11,15 @@ Thumbs.db
 
 /vendor
 /phpunit.xml
+tests
 
-tests/_output/*
-tests/_support/_generated
-
-.env
+.git
+runtime/*
+web/assets/*
+web/uploads
 .php-cs-fixer.cache
+.gitignore
+.gitattributes
+.git-blame-ignore-revs
+LICENSE.md
+README.md

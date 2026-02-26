@@ -25,14 +25,11 @@ class Yii
  * @property yii\rbac\DbManager $authManager
  * @property \yii\web\User|__WebUser $user
  * @property AbstractComponent $fs
+ * @property \yii\queue\Queue $notificationQueue
  */
-class __Application
-{
-}
+class __Application {}
 
 /**
  * @property app\models\User $identity
  */
-class __WebUser
-{
-}
+class __WebUser {}

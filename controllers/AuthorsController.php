@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
+use yii\web\User;
 
 final class AuthorsController extends Controller
 {
@@ -114,13 +115,19 @@ final class AuthorsController extends Controller
         return $this->render('subscribe-for-new-books', ['author' => $this->authorService->get($id), 'form' => $form]);
     }
 
-    public function actionIndex(Request $request): string
+    public function actionIndex(Request $request, User $userService): string
     {
         $searchModel = new AuthorSearch();
 
         return $this->render('index', [
-            'dataProvider' => $searchModel->search($request->queryParams),
-            'searchModel'  => $searchModel,
+            'dataProvider'     => $searchModel->search($request->queryParams),
+            'searchModel'      => $searchModel,
+            'availableButtons' => [
+                'view'                    => true,
+                'subscribe-for-new-books' => true,
+                'update'                  => !$userService->isGuest,
+                'delete'                  => !$userService->isGuest,
+            ],
         ]);
     }
 }

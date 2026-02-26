@@ -47,11 +47,11 @@ final readonly class UpdateAuthorCest
         ];
 
         $I->amLoggedInAs($I->grabRecord(User::class));
-//        $I->amOnPage("/authors/$authorId/update");
-//        $I->seeResponseCodeIsSuccessful();
-//        $I->submitForm('#AuthorForm', ['AuthorForm' => $authorData]);
-//        $I->canSeeRecord(Author::class, ['id' => $authorId, ...$authorData]);
-//        $I->canSeeInCurrentUrl('/authors/index');
+        //        $I->amOnPage("/authors/$authorId/update");
+        //        $I->seeResponseCodeIsSuccessful();
+        //        $I->submitForm('#AuthorForm', ['AuthorForm' => $authorData]);
+        //        $I->canSeeRecord(Author::class, ['id' => $authorId, ...$authorData]);
+        //        $I->canSeeInCurrentUrl('/authors/index');
     }
 
     #[DataProvider('validationDataProvider')]
@@ -60,15 +60,15 @@ final readonly class UpdateAuthorCest
         $authorId = $I->grabRecord(Author::class)->getPrimaryKey();
 
         $I->amLoggedInAs($I->grabRecord(User::class));
-//        $I->amOnPage("/authors/$authorId/update");
-//        $I->seeResponseCodeIsSuccessful();
-//        $I->submitForm('#AuthorForm', ['AuthorForm' => $example['data']]);
-//        $I->cantSeeRecord(Author::class, ['id' => $authorId, ...$example['data']]);
-//        $I->canSeeInCurrentUrl('/authors/create');
-//
-//        foreach ($example['errors'] as $error) {
-//            $I->see($error, '.help-block');
-//        }
+        //        $I->amOnPage("/authors/$authorId/update");
+        //        $I->seeResponseCodeIsSuccessful();
+        //        $I->submitForm('#AuthorForm', ['AuthorForm' => $example['data']]);
+        //        $I->cantSeeRecord(Author::class, ['id' => $authorId, ...$example['data']]);
+        //        $I->canSeeInCurrentUrl('/authors/create');
+        //
+        //        foreach ($example['errors'] as $error) {
+        //            $I->see($error, '.help-block');
+        //        }
     }
 
     protected function validationDataProvider(): array

@@ -17,8 +17,8 @@ return array_merge(
     ],
     ArrayHelper::map(
         range(2, 20),
-        static fn(int $i): string => "author_without_subscription_$i",
-        static fn(int $i): array => [
+        static fn (int $i): string => "author_without_subscription_$i",
+        static fn (int $i): array => [
             'id'          => $i,
             'first_name'  => $faker->firstName,
             'last_name'   => "$i $faker->lastName",

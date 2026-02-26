@@ -7,9 +7,7 @@ use GuzzleHttp\RequestOptions;
 
 final readonly class SmspilotApiClient implements SmspilotApiClientInterface
 {
-    public function __construct(private ClientInterface $httpClient, private string $apiKey)
-    {
-    }
+    public function __construct(private ClientInterface $httpClient, private string $apiKey) {}
 
     public function send(string $text, string $phone): void
     {

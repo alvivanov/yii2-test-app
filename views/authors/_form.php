@@ -21,7 +21,7 @@ echo Html::tag('h1', $this->title);
 echo Html::beginTag('div', ['class' => 'row']);
 echo Html::beginTag('div', ['class' => 'col-md-6']);
 
-$form = ActiveForm::begin(['id' =>'AuthorForm']);
+$form = ActiveForm::begin(['id' => 'AuthorForm']);
 
 echo Html::beginTag('div', ['class' => 'form-group']);
 echo $form->field($model, 'first_name')->textInput(['disabled' => $readOnly]);

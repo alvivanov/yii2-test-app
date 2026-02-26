@@ -64,7 +64,7 @@ final class AuthorService
     }
 
     /**
-     * @throws ModelNotFoundException
+     * @throws ModelNotFoundException|\Throwable
      */
     public function delete(int $id): void
     {

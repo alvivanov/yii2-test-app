@@ -48,7 +48,7 @@ final class CreateBookCest
             'isbn'             => str_repeat('a', 13),
         ];
 
-        Yii::$container->set(SmspilotApiClientInterface::class, static fn() => Stub::makeEmpty(SmspilotApiClientInterface::class, [
+        Yii::$container->set(SmspilotApiClientInterface::class, static fn () => Stub::makeEmpty(SmspilotApiClientInterface::class, [
             'send' => Stub\Expected::once(function (string $phone, string $message) use ($I, $authorsWithSubscription, $bookData): void {
                 $I->assertEquals(
                     sprintf(

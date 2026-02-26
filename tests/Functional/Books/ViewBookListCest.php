@@ -36,7 +36,7 @@ final readonly class ViewBookListCest
             'id',
             'title',
             'publication_year',
-            static fn(Book $book): string => implode(',', array_column($book->authors, 'fullName')),
+            static fn (Book $book): string => implode(',', array_column($book->authors, 'fullName')),
             'created_at',
             'updated_at',
         ]);
@@ -128,14 +128,14 @@ final readonly class ViewBookListCest
                 'query_params' => ['sort' => '-publication_year'],
                 'book_ids'     => range(55, 36),
             ],
-//            'author_string sort asc' => [
-//                'query_params' => ['sort' => 'author_string'],
-//                'book_ids'     => range(1, 20),
-//            ],
-//            'author_string sort desc' => [
-//                'query_params' => ['sort' => '-author_string'],
-//                'book_ids'     => range(55, 36),
-//            ],
+            //            'author_string sort asc' => [
+            //                'query_params' => ['sort' => 'author_string'],
+            //                'book_ids'     => range(1, 20),
+            //            ],
+            //            'author_string sort desc' => [
+            //                'query_params' => ['sort' => '-author_string'],
+            //                'book_ids'     => range(55, 36),
+            //            ],
         ];
     }
 }

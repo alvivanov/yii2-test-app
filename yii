@@ -3,24 +3,25 @@
 /**
  * Yii console bootstrap file.
  *
- * @link https://www.yiiframework.com/
+ * @link      https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license https://www.yiiframework.com/license/
+ * @license   https://www.yiiframework.com/license/
  */
 
 define('DOTENV_PATH', '.');
 define('DOTENV_FILE', '.env');
 define('DOTENV_OVERLOAD', false);
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
-
 require __DIR__ . '/vendor/autoload.php';
+
+defined('YII_DEBUG') or define('YII_DEBUG', env('APP_DEBUG'));
+defined('YII_ENV') or define('YII_ENV', env('APP_ENV', 'prod'));
+
 require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
-Yii::$classMap = array_merge(Yii::$classMap, require __DIR__ . '/config/autoload.php');
+Yii::$classMap = array_merge(Yii::$classMap, require __DIR__ . '/config/parts/autoload.php');
 
 $config = require __DIR__ . '/config/console.php';
 
 $application = new yii\console\Application($config);
-$exitCode = $application->run();
+$exitCode    = $application->run();
 exit($exitCode);

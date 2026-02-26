@@ -117,22 +117,21 @@ final class AuthorServiceTest extends Unit
         new AuthorService()->delete($authorId);
     }
 
-//    public function testDeleteRemovesAuthorAndSubscriptions(): void
-//    {
-//        // create a subscription for author 3 first
-//        $authorId = 3;
-//
-//        $subForm        = new NewBookSubscriptionForm();
-//        $subForm->phone = '+79998887766';
-//        new AuthorService()->createSubscriptionForNewBooks($authorId, $subForm);
-//
-//        $this->assertNotNull(Author::findOne($authorId));
-//        $this->assertTrue(AuthorSubscription::find()->where(['author_id' => $authorId])->exists());
-//
-//        new AuthorService()->delete($authorId);
-//
-//        $this->assertNull(Author::findOne($authorId));
-//        $this->assertFalse(AuthorSubscription::find()->where(['author_id' => $authorId])->exists());
-//    }
+    //    public function testDeleteRemovesAuthorAndSubscriptions(): void
+    //    {
+    //        // create a subscription for author 3 first
+    //        $authorId = 3;
+    //
+    //        $subForm        = new NewBookSubscriptionForm();
+    //        $subForm->phone = '+79998887766';
+    //        new AuthorService()->createSubscriptionForNewBooks($authorId, $subForm);
+    //
+    //        $this->assertNotNull(Author::findOne($authorId));
+    //        $this->assertTrue(AuthorSubscription::find()->where(['author_id' => $authorId])->exists());
+    //
+    //        new AuthorService()->delete($authorId);
+    //
+    //        $this->assertNull(Author::findOne($authorId));
+    //        $this->assertFalse(AuthorSubscription::find()->where(['author_id' => $authorId])->exists());
+    //    }
 }
-

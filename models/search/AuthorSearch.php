@@ -5,6 +5,7 @@ namespace app\models\search;
 use app\models\Author;
 use yii\data\ActiveDataProvider;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 final class AuthorSearch extends Author
 {
@@ -53,7 +54,7 @@ final class AuthorSearch extends Author
         $query          = self::find()->limit(0);
         $this->scenario = self::SCENARIO_TOP_AUTHORS_BY_BOOK_COUNT;
 
-        if ($this->load(['year' => $year, 'limit' => $limit], '') && $this->validate()) {
+        if ($this->setAttributes(['year' => $year, 'limit' => $limit]) && $this->validate()) {
             $query
                 ->alias('a')
                 ->innerJoinWith('books b')
@@ -64,5 +65,10 @@ final class AuthorSearch extends Author
         }
 
         return new ActiveDataProvider(['pagination' => false, 'sort' => false, 'query' => $query]);
+    }
+
+    public function searchForDropdown(string $from = 'id', string $to = 'fullName', ?int $limit = null): array
+    {
+        return ArrayHelper::map(self::find()->limit($limit)->all(), $from, $to);
     }
 }

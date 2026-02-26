@@ -3,7 +3,7 @@
 $faker = Faker\Factory::create();
 $result = [];
 
-$getAuthorIds = static fn(int $bookId): array => match (true) {
+$getAuthorIds = static fn (int $bookId): array => match (true) {
     $bookId <= 1 => [1, 2],
     $bookId <= 3 => [3],
     $bookId <= 6 => [4],

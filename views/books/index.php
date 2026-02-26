@@ -5,12 +5,14 @@ use yii\bootstrap5\Html;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 use yii\web\View;
 
 /**
  * @var View               $this
  * @var BookSearch         $searchModel
  * @var ActiveDataProvider $dataProvider
+ * @var array              $availableButtons
  */
 
 $this->title                   = Yii::t('app/book', 'Books');
@@ -34,8 +36,9 @@ echo GridView::widget([
         'created_at',
         'updated_at',
         [
-            'class'    => ActionColumn::class,
-            'template' => '{view} {update} {delete}',
+            'class'          => ActionColumn::class,
+            'template'       => '{view} {update} {delete}',
+            'visibleButtons' => $availableButtons,
         ],
     ],
 ]);

@@ -35,7 +35,7 @@ final readonly class Top10AuthorsByBookCountCest
         $I->seeResponseCodeIsSuccessful();
         $I->assertGrid($example['author_ids'], $I->grabFixture('authors')->data, [
             'id',
-            static fn(array $fixture): string => "{$fixture['last_name']} {$fixture['first_name']} {$fixture['middle_name']}",
+            static fn (array $fixture): string => "{$fixture['last_name']} {$fixture['first_name']} {$fixture['middle_name']}",
         ]);
     }
 

@@ -116,45 +116,45 @@ final readonly class UpdateBookCest
                     'Main page image cannot be blank',
                 ],
             ],
-//            'check fields max length' => [
-//                'book_data'       => [
-//                    'title'            => str_repeat('a', 256),
-//                    'isbn'             => str_repeat('a', 14),
-//                    'publication_year' => 10000,
-//                ],
-//                'main_page_image' => 'test_image.png',
-//                'authors'         => [1, 2],
-//                'errors'          => [
-//                    'Title should contain at most 255 characters.',
-//                    'ISBN should contain 13 characters.',
-//                    'Publication year must be no greater than 9999.',
-//                ],
-//            ],
-//            'check fields min length' => [
-//                'book_data'       => [
-//                    'title'            => str_repeat('a', 255),
-//                    'isbn'             => str_repeat('a', 12),
-//                    'publication_year' => -1,
-//                ],
-//                'main_page_image' => 'test_image.png',
-//                'authors'         => [1, 2],
-//                'errors'          => [
-//                    'ISBN should contain 13 characters.',
-//                    'Publication year must be no less than 0.',
-//                ],
-//            ],
-//            'invalid author ids'      => [
-//                'book_data'       => [
-//                    'title'            => str_repeat('a', 255),
-//                    'isbn'             => str_repeat('a', 13),
-//                    'publication_year' => 1212,
-//                ],
-//                'main_page_image' => 'test_image.png',
-//                'authors'         => [123123],
-//                'errors'          => [
-//                    'Authors is invalid.',
-//                ],
-//            ],
+            //            'check fields max length' => [
+            //                'book_data'       => [
+            //                    'title'            => str_repeat('a', 256),
+            //                    'isbn'             => str_repeat('a', 14),
+            //                    'publication_year' => 10000,
+            //                ],
+            //                'main_page_image' => 'test_image.png',
+            //                'authors'         => [1, 2],
+            //                'errors'          => [
+            //                    'Title should contain at most 255 characters.',
+            //                    'ISBN should contain 13 characters.',
+            //                    'Publication year must be no greater than 9999.',
+            //                ],
+            //            ],
+            //            'check fields min length' => [
+            //                'book_data'       => [
+            //                    'title'            => str_repeat('a', 255),
+            //                    'isbn'             => str_repeat('a', 12),
+            //                    'publication_year' => -1,
+            //                ],
+            //                'main_page_image' => 'test_image.png',
+            //                'authors'         => [1, 2],
+            //                'errors'          => [
+            //                    'ISBN should contain 13 characters.',
+            //                    'Publication year must be no less than 0.',
+            //                ],
+            //            ],
+            //            'invalid author ids'      => [
+            //                'book_data'       => [
+            //                    'title'            => str_repeat('a', 255),
+            //                    'isbn'             => str_repeat('a', 13),
+            //                    'publication_year' => 1212,
+            //                ],
+            //                'main_page_image' => 'test_image.png',
+            //                'authors'         => [123123],
+            //                'errors'          => [
+            //                    'Authors is invalid.',
+            //                ],
+            //            ],
         ];
     }
 }

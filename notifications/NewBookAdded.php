@@ -13,9 +13,7 @@ final readonly class NewBookAdded implements NotificationInterface
 {
     use NotificationTrait;
 
-    public function __construct(private Book $book, private Author $author)
-    {
-    }
+    public function __construct(private Book $book, private Author $author) {}
 
     public function exportForSms(): SmsMessage
     {

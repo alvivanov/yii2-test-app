@@ -6,7 +6,6 @@ use yii\behaviors\AttributeTypecastBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 
 /**
  * @property int    book_id
@@ -21,14 +20,8 @@ final class BookAuthor extends ActiveRecord
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-            [
-                'class' => AttributeTypecastBehavior::class,
-            ],
-            [
-                'class'              => TimestampBehavior::class,
-                'value'              => new Expression('CURRENT_TIMESTAMP'),
-                'updatedAtAttribute' => false,
-            ],
+            AttributeTypecastBehavior::class,
+            ['class' => TimestampBehavior::class, 'value' => date('Y-m-d H:i:s'), 'updatedAtAttribute' => false],
         ]);
     }
 

@@ -23,6 +23,7 @@ final class BookForm extends Model
     public mixed $publication_year = null;
     /** @var string */
     public mixed $isbn                = null;
+    /** @var string */
     public mixed $main_page_image_url = null;
     /** @var UploadedFile|null */
     public mixed $main_page_image = null;
@@ -60,11 +61,7 @@ final class BookForm extends Model
      */
     public function behaviors(): array
     {
-        return array_merge(parent::behaviors(), [
-            [
-                'class' => AttributeTypecastBehavior::class,
-            ],
-        ]);
+        return array_merge(parent::behaviors(), [AttributeTypecastBehavior::class]);
     }
 
     /**
@@ -105,7 +102,7 @@ final class BookForm extends Model
             return false;
         }
 
-        $this->main_page_image = UploadedFile::getInstanceByName('main_page_image');
+        $this->main_page_image = UploadedFile::getInstanceByName(self::formName() . '[main_page_image]');
 
         return $this->validate();
     }

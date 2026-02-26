@@ -1,12 +1,13 @@
 services:
   app:
     build:
+      target: development
       args:
         - 'xdebug=${XDEBUG:-false}'
     container_name: '${APP_CONTAINER_NAME}'
     working_dir: /app
     volumes:
-      - ./:/app:delegated
+      - ./:/app:cached
     command:
       - php
       - yii
@@ -21,7 +22,10 @@ services:
     networks:
       - local
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
   db:
     image: mysql:9.6
     container_name: '${DB_CONTAINER_NAME}'
@@ -30,6 +34,12 @@ services:
       MYSQL_DATABASE: '${DB_DATABASE}'
       MYSQL_USER: '${DB_USERNAME}'
       MYSQL_ALLOW_EMPTY_PASSWORD: true
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
     networks:
       - local
     ports:
@@ -42,6 +52,23 @@ services:
       MYSQL_DATABASE: '${DB_DATABASE}'
       MYSQL_USER: '${DB_USERNAME}'
       MYSQL_ALLOW_EMPTY_PASSWORD: true
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - local
+  redis:
+    image: redis:8.6-alpine
+    container_name: '${REDIS_CONTAINER_NAME}'
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
     networks:
       - local
 networks:

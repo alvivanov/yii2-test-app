@@ -5,6 +5,7 @@ namespace app\models;
 use diecoding\flysystem\traits\ModelTrait;
 use Yii;
 use yii\behaviors\AttributeTypecastBehavior;
+use yii\behaviors\OptimisticLockBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -51,14 +52,18 @@ class Book extends ActiveRecord
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-            [
-                'class' => AttributeTypecastBehavior::class,
-            ],
-            [
-                'class' => TimestampBehavior::class,
-                'value' => date('Y-m-d H:i:s'),
-            ],
+            OptimisticLockBehavior::class,
+            AttributeTypecastBehavior::class,
+            ['class' => TimestampBehavior::class, 'value' => date('Y-m-d H:i:s')],
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function optimisticLock(): string
+    {
+        return 'version';
     }
 
     public function rules(): array

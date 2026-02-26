@@ -4,7 +4,7 @@ $faker = Faker\Factory::create();
 
 return array_merge(
     array_map(
-        static fn(int $i): array => [
+        static fn (int $i): array => [
             'id'               => $i,
             'title'            => "$i $faker->word test $i $faker->word",
             'publication_year' => 2026,
@@ -16,7 +16,7 @@ return array_merge(
         range(1, 55)
     ),
     array_map(
-        static fn(int $i): array => [
+        static fn (int $i): array => [
             'id'               => $i,
             'title'            => "$i $faker->word test $i $faker->word",
             'publication_year' => 2025,

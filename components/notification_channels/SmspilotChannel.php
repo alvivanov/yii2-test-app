@@ -10,9 +10,7 @@ use yii\base\InvalidArgumentException;
 
 final readonly class SmspilotChannel implements ChannelInterface
 {
-    public function __construct(private SmspilotApiClientInterface $apiClient)
-    {
-    }
+    public function __construct(private SmspilotApiClientInterface $apiClient) {}
 
     /**
      * @inheritdoc
