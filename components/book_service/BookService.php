@@ -45,7 +45,7 @@ final readonly class BookService
 
     private function syncAuthors(BookForm $form, Book $book): void
     {
-        BookAuthor::deleteAll(['author_id' => ArrayHelper::getColumn($book->authors, 'id')]);
+        BookAuthor::deleteAll(['book_id' => $book->id]);
 
         foreach (Author::findAll($form->authors) as $author) {
             $book->link('authors', $author);

@@ -37,19 +37,19 @@ class Author extends ActiveRecord
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-            OptimisticLockBehavior::class,
+//            OptimisticLockBehavior::class,
             AttributeTypecastBehavior::class,
             ['class' => TimestampBehavior::class, 'value' => date('Y-m-d H:i:s')],
         ]);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function optimisticLock(): string
-    {
-        return 'version';
-    }
+//    /**
+//     * @inheritDoc
+//     */
+//    public function optimisticLock(): string
+//    {
+//        return 'version';
+//    }
 
     public function rules(): array
     {

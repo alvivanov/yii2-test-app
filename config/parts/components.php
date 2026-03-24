@@ -1,12 +1,14 @@
 <?php
 
 use app\components\FlySystem\LocalComponent;
+use app\models\User;
 use yii\caching\FileCache;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\redis\Connection;
 
 return array_merge(require(__DIR__ . '/queues.php'), [
+    'user'  => ['class' => \yii\web\User::class, 'identityClass' => User::class, 'loginUrl' => '/auth/login'],
     'db'    => require __DIR__ . '/db.php',
     'redis' => ['class' => Connection::class, 'hostname' => env('REDIS_HOST')],
     'cache' => FileCache::class,

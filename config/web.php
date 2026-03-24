@@ -1,7 +1,5 @@
 <?php
 
-use app\models\User;
-
 $config = [
     'id'         => 'basic',
     'basePath'   => dirname(__DIR__),
@@ -14,7 +12,6 @@ $config = [
         'urlManager'   => require __DIR__ . '/parts/routes.php',
         'request'      => ['cookieValidationKey' => 'fq7truhlJDvZXM2MyeMwgtM1w9TDkEYg'],
         'errorHandler' => ['errorAction' => 'site/error'],
-        'user'         => ['identityClass' => User::class, 'loginUrl' => '/auth/login'],
     ]),
 ];
 

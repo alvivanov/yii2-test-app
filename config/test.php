@@ -1,7 +1,6 @@
 <?php
 
 use app\components\bootstrap\EventSubscriberBootstrap;
-use app\models\User;
 use yii\queue\sync\Queue;
 
 return [
@@ -20,7 +19,6 @@ return [
             'urlManager'   => array_merge(require __DIR__ . '/parts/routes.php', ['showScriptName' => true]),
             'request'      => ['cookieValidationKey' => 'test', 'enableCsrfValidation' => false],
             'errorHandler' => ['errorAction' => 'site/error'],
-            'user'         => ['identityClass' => User::class, 'loginUrl' => '/auth/login'],
         ],
     ),
 ];

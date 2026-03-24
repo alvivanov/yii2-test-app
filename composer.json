@@ -52,7 +52,8 @@
         }
     },
     "scripts": {
-        "test": "php ./tests/yii migrate/up --interactive=0 && ./vendor/bin/codecept build &&./vendor/bin/codecept run",
+        "seed": "php yii fixture \"*\"  --namespace=app\\\\tests\\\\fixtures",
+        "test": "php ./tests/yii migrate/up --interactive=0 && ./vendor/bin/codecept build && ./vendor/bin/codecept run",
         "cs-fixer-check": "./vendor/bin/php-cs-fixer check",
         "cs-fixer-fix": "./vendor/bin/php-cs-fixer fix",
         "post-install-cmd": [

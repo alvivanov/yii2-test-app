@@ -13,7 +13,6 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
-use yii\web\User;
 
 final class BooksController extends Controller
 {
@@ -102,7 +101,7 @@ final class BooksController extends Controller
         return $this->redirect('/books');
     }
 
-    public function actionIndex(Request $request, User $userService): string
+    public function actionIndex(Request $request): string
     {
         $searchModel = new BookSearch();
 
@@ -111,8 +110,8 @@ final class BooksController extends Controller
             'searchModel'      => $searchModel,
             'availableButtons' => [
                 'view'   => true,
-                'update' => !$userService->isGuest,
-                'delete' => !$userService->isGuest,
+                'update' => !\Yii::$app->user->isGuest,
+                'delete' => !\Yii::$app->user->isGuest,
             ],
         ]);
     }
